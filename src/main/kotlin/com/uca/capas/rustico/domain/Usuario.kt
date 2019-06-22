@@ -11,11 +11,11 @@ data class Usuario(
     var id : Int,
 
     @Column(name="usuario")
-    var usuario : String = "",
+    var correo : String = "",
 
     @Column(name="password")
     var password : String =""
 )
 {
-    override fun toString(): String = "Usuario { cUsuario = $id, usuario = $usuario}"
+    override fun toString(): String = "Usuario { cUsuario = $id, usuario = $correo}"
 }

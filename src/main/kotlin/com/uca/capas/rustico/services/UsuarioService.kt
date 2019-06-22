@@ -12,4 +12,7 @@ class UsuarioService{
 
     fun findall()=usuarioRepository.findAll()
     fun save(usuario: Usuario) = usuarioRepository.save(usuario)
+    fun login(correo:String, password: String) =
+            usuarioRepository.findFirstByCorreoAndPassword(correo, password)
+    fun findOne(id: Int) = usuarioRepository.findById(id)
 }
