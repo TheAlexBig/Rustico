@@ -11,7 +11,8 @@ import javax.validation.constraints.Pattern
 @Table(name = "sucursal")
 data class Sucursal (
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sucursal_c_sucursal_seq")
+    @SequenceGenerator(sequenceName = "sucursal_c_sucursal_seq",  name = "sucursal_c_sucursal_seq")
     @Column(name = "c_sucursal")
     var id : Int?=null,
 

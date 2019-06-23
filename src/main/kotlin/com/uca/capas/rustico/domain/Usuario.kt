@@ -6,7 +6,8 @@ import javax.persistence.*
 @Table(name = "usuario")
 data class Usuario(
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario_c_usuario_seq")
+    @SequenceGenerator(sequenceName = "usuario_c_usuario_seq",  name = "usuario_c_usuario_seq")
     @Column(name = "c_usuario")
     var id : Int,
 
