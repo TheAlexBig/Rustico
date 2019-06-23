@@ -17,6 +17,6 @@ class EmpleadoController{
     @RequestMapping("/sucursal/{sucId}/empleados")
     fun perfil(@PathVariable("sucId") id: Int, model: Model, pageable: Pageable ):String{
         model.addAttribute("empleados",empleadoService.findBySucursalId(id, pageable).toList())
-        return "trabajadores"
+        return "empleados"
     }
 }

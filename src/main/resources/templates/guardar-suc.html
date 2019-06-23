@@ -12,10 +12,10 @@
 
 
 <div class="container my-5">
-    <h2 class="mb-5">Editar sucursal</h2>
+    <h2 class="mb-5">Crear sucursal</h2>
     <div class="row">
         <div class="col-md-6">
-            <form class="justify-content-center" th:object="${sucursal}" th:action="@{/sucursal/guardar/{id}(id=${sucursal.id})}"
+            <form class="justify-content-center" th:object="${sucursal}" th:action="@{/sucursal/guardar}"
                   method="post">
                 <div class="row">
                     <div class="form-group col-md-6">
@@ -81,13 +81,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-group col-md-12">
-                        <span th:if="${errorSucursal}" th:text="${errorSucursal}" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-md-6 mt-5">
-                        <input type="submit" class="btn btn-primary" value="Editar">
+                        <input type="submit" class="btn btn-primary" value="Crear">
                     </div>
                 </div>
             </form>

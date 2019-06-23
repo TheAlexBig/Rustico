@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 @Controller
-@SessionAttributes("sucursal")
 class SucursalController {
     @Autowired
     lateinit var sucursalService: SucursalService
 
     @RequestMapping("/sucursal")
     fun mostrarTodos(model:Model):String{
-        model.addAttribute("sucursales", sucursalService.findall().toList())
+        model.addAttribute("sucursales", sucursalService.findAll().toList())
         return "dashboard"
     }
     @RequestMapping("/sucursal/editar/{sucId}", method = [RequestMethod.GET, RequestMethod.POST])
@@ -33,25 +32,42 @@ class SucursalController {
 
     @PostMapping("/sucursal/actualizar/{sucId}")
     fun actualizar(@PathVariable("sucId") Id: Int,
-                   @ModelAttribute("sucursal") @Valid  sucursal: Sucursal,
+                   @Valid  sucursal: Sucursal,
                    result: BindingResult, model: Model): String{
         model.addAttribute("sucursal", sucursal)
+        sucursal.id = Id
         if(result.hasErrors()){
-            model.addAttribute("errorSucursal", "No se inserto la sucursal")
             return "editar-suc"
         }
         sucursalService.save(sucursal)
-        return "editar-suc"
+        model.addAttribute("sucursales", sucursalService.findAll())
+        return "dashboard"
 
     }
 
-    @RequestMapping(value ="/sucursal/guardar}",method = [RequestMethod.POST, RequestMethod.GET] )
+    @GetMapping("/sucursal/preparar")
+    fun preparar(sucursal: Sucursal, model: Model): String {
+        model.addAttribute("sucursal", sucursal)
+        return "guardar-suc"
+    }
+
+    @PostMapping("/sucursal/guardar" )
     fun guardar(@Valid sucursal: Sucursal, result: BindingResult, model: Model):String{
         if(result.hasErrors()){
-            return "guardar"
+            model.addAttribute("sucursal", sucursal)
+            return "guardar-suc"
         }
         sucursalService.save(sucursal)
-        model.addAttribute("sucursales", sucursalService.findall().toList())
+        model.addAttribute("sucursales", sucursalService.findAll().toList())
+        return "dashboard"
+    }
+
+    @GetMapping("sucursal/borrar/{sucId}")
+    fun borrar(model: Model, @PathVariable("sucId") Id: Int):String{
+        sucursalService.findOne(Id).ifPresent {
+            sucursalService.delete(it)
+        }
+        model.addAttribute("sucursales", sucursalService.findAll().toList())
         return "dashboard"
     }
 }

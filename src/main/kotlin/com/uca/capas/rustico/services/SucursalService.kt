@@ -10,7 +10,8 @@ class SucursalService{
     @Autowired
     lateinit var sucursalRepository: SucursalRepository
 
-    fun findall() = sucursalRepository.findAll()
+    fun findAll() = sucursalRepository.findAll()
     fun save(sucursal: Sucursal) = sucursalRepository.save(sucursal)
     fun findOne(Id: Int) = sucursalRepository.findById(Id)
+    fun delete(sucursal: Sucursal) = sucursalRepository.delete(sucursal)
 }

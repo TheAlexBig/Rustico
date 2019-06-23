@@ -38,14 +38,14 @@
                         <td th:text="${suc.abre}"></td>
                         <td th:text="${suc.mesas}"></td>
                         <td th:text="${suc.gerente}"></td>
-                        <td><a th:href="@{/sucursal/perfil/{id}(id=${suc.id})}" class="btn btn-primary"><i class="fas fa-file-alt ml-2"></i></a></td>
+                        <td><a th:href="@{/sucursal/{id}/empleados(id=${suc.id})}" class="btn btn-primary"><i class="fas fa-file-alt ml-2"></i></a></td>
                         <td><a th:href="@{/sucursal/editar/{id}(id=${suc.id})}" class="btn btn-primary"><i class="fas fa-edit ml-2"></i></a></td>
                         <td><a th:href="@{/sucursal/borrar/{id}(id=${suc.id})}" class="btn btn-primary"><i class="fas fa-trash-alt ml-2"></i></a></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <p class="my-5"><a th:href="@{/sucursal/guardar}" class="btn btn-primary"><i class="fas fa-plus-circle ml-2"></i></a></p>
+            <p class="my-5"><a th:href="@{/sucursal/preparar}" class="btn btn-primary"><i class="fas fa-plus-circle ml-2"></i></a></p>
         </div>
     </div>
 </div>
