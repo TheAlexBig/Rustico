@@ -1,5 +1,6 @@
 package com.uca.capas.rustico.domain
 
+import org.hibernate.annotations.OnDelete
 import org.hibernate.validator.constraints.Range
 import javax.persistence.*
 import javax.validation.constraints.NotEmpty

@@ -3,6 +3,7 @@ package com.uca.capas.rustico.domain
 import org.hibernate.validator.constraints.Range
 import javax.persistence.*
 import javax.validation.constraints.NotEmpty
+import javax.validation.constraints.NotNull
 import javax.validation.constraints.Pattern
 
 
@@ -12,7 +13,7 @@ data class Empleado(
         @Id
         @GeneratedValue
         @Column(name="c_empleado")
-        var id : Int,
+        var id : Int?=null,
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name= "c_sucursal", nullable = true)
@@ -24,17 +25,19 @@ data class Empleado(
         var nombre : String ="",
 
         @Column(name ="edad")
-        @field:Range(min=0)
-        @field:NotEmpty(message="Ingrese la edad")
-        var edad: Int,
+        @field:Range(min=18,message="No puede ser menor de 18")
+        @field:NotNull(message="Ingrese la edad del joven")
+        var edad: Int?=null,
 
         @Column(name ="genero")
-        var genero: Boolean,
+        @field:NotEmpty(message="Seleccione un genero")
+        var genero: String="",
 
         @Column(name = "estado")
-        var estado: Boolean
+        @field:NotEmpty(message="Seleccione un estado")
+        var estado: String=""
 )
-{
-    override fun toString(): String = "Empleado { id = $id, nombre = $nombre, " +
+        {
+        override fun toString(): String = "Empleado { id = $id, nombre = $nombre, " +
             "edad=$edad, genero=$genero, estado=$estado }"
 }

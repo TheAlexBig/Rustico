@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>Rustico</title>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Students</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
@@ -13,6 +13,7 @@
 <div th:switch="${#lists.isEmpty(sucursales)}" class="container my-5">
     <div class="row">
         <div class="col-md-12">
+            <p><a th:href="@{/sucursal/preparar}" class="btn btn-primary">Crear<i class="fas fa-plus-circle ml-4"></i></a></p>
             <h2 th:case="true">No sucursales yet!</h2>
             <div th:case="*">
                 <h2 class="my-5">Sucursales</h2>
@@ -38,14 +39,13 @@
                         <td th:text="${suc.abre}"></td>
                         <td th:text="${suc.mesas}"></td>
                         <td th:text="${suc.gerente}"></td>
-                        <td><a th:href="@{/sucursal/{id}/empleados(id=${suc.id})}" class="btn btn-primary"><i class="fas fa-file-alt ml-2"></i></a></td>
+                        <td><a th:href="@{/sucursal/{id}/empleado(id=${suc.id})}" class="btn btn-primary"><i class="fas fa-file-alt ml-2"></i></a></td>
                         <td><a th:href="@{/sucursal/editar/{id}(id=${suc.id})}" class="btn btn-primary"><i class="fas fa-edit ml-2"></i></a></td>
                         <td><a th:href="@{/sucursal/borrar/{id}(id=${suc.id})}" class="btn btn-primary"><i class="fas fa-trash-alt ml-2"></i></a></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <p class="my-5"><a th:href="@{/sucursal/preparar}" class="btn btn-primary"><i class="fas fa-plus-circle ml-2"></i></a></p>
         </div>
     </div>
 </div>

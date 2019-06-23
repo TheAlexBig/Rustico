@@ -40,7 +40,7 @@ class SucursalController {
             return "editar-suc"
         }
         sucursalService.save(sucursal)
-        model.addAttribute("sucursales", sucursalService.findAll())
+        model.addAttribute("sucursales", sucursalService.findAll().toList())
         return "dashboard"
 
     }
