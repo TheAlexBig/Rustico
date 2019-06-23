@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -36,7 +36,7 @@
                         <td th:text="${suc.ubicacion}"></td>
                         <td th:text="${suc.cierra}"></td>
                         <td th:text="${suc.abre}"></td>
-                        <td th:text="${suc.NMesas}"></td>
+                        <td th:text="${suc.mesas}"></td>
                         <td th:text="${suc.gerente}"></td>
                         <td><a th:href="@{/sucursal/perfil/{id}(id=${suc.id})}" class="btn btn-primary"><i class="fas fa-file-alt ml-2"></i></a></td>
                         <td><a th:href="@{/sucursal/editar/{id}(id=${suc.id})}" class="btn btn-primary"><i class="fas fa-edit ml-2"></i></a></td>
@@ -45,7 +45,7 @@
                     </tbody>
                 </table>
             </div>
-            <p class="my-5"><a href="/signup" class="btn btn-primary"><i class="fas fa-plus-circle ml-2"></i></a></p>
+            <p class="my-5"><a th:href="@{/sucursal/guardar}" class="btn btn-primary"><i class="fas fa-plus-circle ml-2"></i></a></p>
         </div>
     </div>
 </div>

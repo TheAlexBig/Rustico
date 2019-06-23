@@ -27,9 +27,10 @@ class UsuarioController {
             return "login"
         }
         else{
-            val check =  usuarioService.login(loginForm.correo, loginForm.password).isPresent
-            if(check){
-                model.addAttribute("Logeado",loginForm.correo)
+            usuarioService.login(loginForm.correo, loginForm.password).ifPresent {
+                model.addAttribute("logeado",loginForm.correo)
+            }
+            if(model.containsAttribute("logeado")){
                 return "redirect:/sucursal"
             }
             else{

@@ -1,8 +1,5 @@
 package com.uca.capas.rustico.domain
 
-import com.fasterxml.jackson.annotation.JsonIgnore
-import org.hibernate.annotations.OnDelete
-import org.hibernate.annotations.OnDeleteAction
 import org.hibernate.validator.constraints.Range
 import javax.persistence.*
 import javax.validation.constraints.NotEmpty
@@ -17,11 +14,9 @@ data class Empleado(
         @Column(name="c_empleado")
         var id : Int,
 
-        @ManyToOne(fetch = FetchType.LAZY, optional = false)
-        @JoinColumn(name= "c_sucursal", nullable = false)
-        @OnDelete(action = OnDeleteAction.NO_ACTION)
-        @JsonIgnore
-        var sucursal: Sucursal,
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name= "c_sucursal", nullable = true)
+        var sucursal: Sucursal?=null,
 
         @Column(name = "nombre")
         @field:NotEmpty(message="Ingrese el nombre del empleado")

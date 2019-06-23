@@ -15,8 +15,8 @@
     <h2 class="mb-5">Editar sucursal</h2>
     <div class="row">
         <div class="col-md-6">
-            <form class="justify-content-center" th:object="${sucursal}" th:action="@{/sucursal/actualizar/{id}(id=${sucursal.id})}"
-                   method="post">
+            <form class="justify-content-center" th:object="${sucursal}" th:action="@{/sucursal/guardar/{id}(id=${sucursal.id})}"
+                  method="post">
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="nombre" class="col-form-label">Nombre</label>
@@ -42,11 +42,11 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="cierra" class="col-form-label">Cierra</label>
-                        <input id="cierra" class="form-control"  th:value="${sucursal.cierra}" type="time" th:field="*{cierra}"/>
+                        <input id="cierra" class="form-control"  type="time" th:field="*{cierra}"/>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="abre" class="col-form-label">Abre</label>
-                        <input id="abre" class="form-control" th:value="${sucursal.abre}"  type="time" th:field="*{abre}"/>
+                        <input id="abre" class="form-control" type="time" th:field="*{abre}"/>
                     </div>
                 </div>
                 <div class="row">

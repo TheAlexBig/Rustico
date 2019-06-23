@@ -1,8 +1,6 @@
 package com.uca.capas.rustico.domain
 
 import org.hibernate.validator.constraints.Range
-import java.time.LocalTime
-import java.util.*
 import javax.persistence.*
 import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.Pattern
@@ -16,39 +14,38 @@ data class Sucursal (
     var id : Int,
 
     @Column(name="nombre")
-    @field:NotEmpty(message="Ingrese el nombre de la sucursal")
-    @field:Pattern(regexp = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*\$", message = "Esto no es un nombre")
+    @NotEmpty(message="Ingrese el nombre de la sucursal")
+    @Pattern(regexp = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*\$", message = "Esto no es un nombre")
     var nombre : String = "",
 
     @Column(name="ubicacion")
-    @field:NotEmpty(message="Ingrese la direccion")
+    @NotEmpty(message="Ingrese la direccion")
     @field:Pattern(regexp = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*\$", message = "Esto no es un nombre")
     var ubicacion : String = "",
 
     @Column(name = "cierra_a")
-    @field:NotEmpty(message="Ingrese horario de cierre")
-    @field:Temporal(TemporalType.TIME)
-    var cierra : Date,
+    @NotEmpty(message="Ingrese horario de cierre")
+    var cierra : String ="",
 
     @Column(name="abre_a")
-    @field:NotEmpty(message="Ingrese horario de apertura")
-    @field:Temporal(TemporalType.TIME)
-    var abre : Date,
+    @NotEmpty(message="Ingrese horario de apertura")
+    var abre : String="",
 
     @Column(name="numero_mesas")
-    @field:Range(min=1,message="El rango es incorrecto")
-    var nMesas : Int,
+    @Range(min=1,message="El rango es incorrecto")
+    var mesas : Int,
 
     @Column(name="nombre_gerente")
-    @field:NotEmpty(message="Ingrese el nombre del gerente")
-    @field:Pattern(regexp = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*\$", message = "Esto no es un nombre")
-    var gerente: String,
+    @NotEmpty(message="Ingrese el nombre del gerente")
+    @Pattern(regexp = "^(?![\\s.]+\$)[a-zA-Z\\s.]*\$", message = "Esto no es un nombre")
+    var gerente: String="",
 
     @OneToMany(fetch = FetchType.LAZY,
             mappedBy = "sucursal")
-    var empleados : List<Empleado>
-){
+    var empleados : Set<Empleado>?=null
+) {
     override fun toString(): String = "Sucursal { id = $id, nombre = $nombre," +
-            "ubicacion=$ubicacion, cierra=$cierra, abre=$abre, nMesas = $nMesas, gerente=$gerente" +
-            "empleados=$empleados}"
+            "ubicacion=$ubicacion, cierra=$cierra, abre=$abre, nMesas = $mesas, gerente=$gerente" +
+            ", empleados=$empleados}"
+
 }
