@@ -3,7 +3,11 @@ package com.uca.capas.rustico.domain
 import com.fasterxml.jackson.annotation.JsonIgnore
 import org.hibernate.annotations.OnDelete
 import org.hibernate.annotations.OnDeleteAction
+import org.hibernate.validator.constraints.Range
 import javax.persistence.*
+import javax.validation.constraints.NotEmpty
+import javax.validation.constraints.Pattern
+
 
 @Entity
 @Table(name = "empleado")
@@ -19,10 +23,14 @@ data class Empleado(
         @JsonIgnore
         var sucursal: Sucursal,
 
-        @Column(name = "name")
+        @Column(name = "nombre")
+        @field:NotEmpty(message="Ingrese el nombre del empleado")
+        @field:Pattern(regexp = "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*\$", message = "Esto no es un nombre")
         var nombre : String ="",
 
         @Column(name ="edad")
+        @field:Range(min=0)
+        @field:NotEmpty(message="Ingrese la edad")
         var edad: Int,
 
         @Column(name ="genero")

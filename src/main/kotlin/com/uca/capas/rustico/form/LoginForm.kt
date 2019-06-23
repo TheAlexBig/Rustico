@@ -9,13 +9,11 @@ data class LoginForm(
         @field:Email
         @field:NotEmpty(message = "No puede estar vacio el correo")
         @field:Size(min = 8, message = "Formato incorrecto debe ser mayor 8 caracteres")
-        @field:NotNull(message = "No puede ser nulo el campo")
-        var correo : String? = null,
+        var correo : String="",
 
         @field:NotEmpty(message = "Ingrese una contraseña")
         @field:Size(min = 8, message = "Formato incorrecto debe ser mayor 8 caracteres")
-        @field:NotNull(message = "No puede ser nulo el campo")
-        var password : String? = null
+        var password : String= ""
 ){
 
 }

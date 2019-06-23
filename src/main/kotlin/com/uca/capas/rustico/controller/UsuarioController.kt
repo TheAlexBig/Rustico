@@ -15,32 +15,26 @@ class UsuarioController {
     lateinit var usuarioService : UsuarioService
 
     @RequestMapping("/")
-    fun blog(model: Model): String {
+    fun index(model: Model): String {
         model.addAttribute("loginForm", LoginForm())
         return "login"
     }
 
     @RequestMapping("/login",method = [RequestMethod.POST])
     fun login(@Valid loginForm: LoginForm, result: BindingResult, model:Model): String{
-        when(result.hasErrors()){
-            true -> {
-                model.addAttribute("loginForm", loginForm)
-                return "login"
+        if(result.hasErrors()){
+            model.addAttribute("loginForm", loginForm)
+            return "login"
+        }
+        else{
+            val check =  usuarioService.login(loginForm.correo, loginForm.password).isPresent
+            if(check){
+                model.addAttribute("Logeado",loginForm.correo)
+                return "redirect:/sucursal"
             }
-            false -> {
-                var check = false
-                usuarioService.login(loginForm.correo!!, loginForm.password!!).ifPresent {
-                    check=true
-                }
-
-                if(check){
-                    model.addAttribute("Logeado",loginForm.correo)
-                    return "dashboard"
-                }
-                else{
-                    model.addAttribute("errorLogin", "Usuario no encontrado")
-                    return "login"
-                }
+            else{
+                model.addAttribute("errorLogin", "Usuario no encontrado")
+                return "login"
             }
         }
     }

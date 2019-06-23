@@ -12,4 +12,5 @@ class SucursalService{
 
     fun findall() = sucursalRepository.findAll()
     fun save(sucursal: Sucursal) = sucursalRepository.save(sucursal)
+    fun findOne(Id: Int) = sucursalRepository.findById(Id)
 }
